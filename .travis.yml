@@ -3,7 +3,7 @@ python: "2.7"
 env: DB=postgres
 # command to install dependencies
 install: 
-    - PIL==1.1.7 --allow-external PIL
+    - PIL==1.1.7 --allow-external PIL --allow-unverified PIL
     - pip install -r requirements.txt
 # command before running tests
 before_script: psql -c 'create database photo_manager;' -U postgres
