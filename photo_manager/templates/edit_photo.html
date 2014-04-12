@@ -21,7 +21,7 @@
     <h2 class='photo-caption' title='click to edit'>{% inplace_edit "photo.caption" edit_empty_value='Add a caption.' %}</h2>
     <a href="{% url 'delete_photo' album.pk photo.pk %}" onclick="return confirm('Are you positive you want to delete this photo?');">
         {% thumbnail photo.image "x600" as im %}
-            <img class='photo' src="{{ im.url }}">
+            <img class='photo' id='DELETE' src="{{ im.url }}">
         {% endthumbnail %}
     </a>
 

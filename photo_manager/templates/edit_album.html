@@ -44,6 +44,8 @@
         </div>
     {% endfor %}
 
+    <div class='clear'></div>
+
     <br><a href="{% url 'delete_album' album.pk %}" onclick="return confirm('Are you positive you want to delete this album?');" class="delete-button">Delete Album</a>
 
     <p class='toolbar'><a href="{% url 'album' album.pk %}"><b>Back to Album<b></a></p>

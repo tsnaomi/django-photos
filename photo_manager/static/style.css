@@ -1,6 +1,6 @@
 body { background-color:#FFFFFF; color:#000000; font-family:Garamond, "Palatino Linotype", "Book Antiqua", Palatino, serif; }
 
-div.page { margin:0 14% 50% 14%; }
+div.page { margin:0 14% 10% 14%; }
 
 h1 { font-size:90px; text-align:center; }
 
@@ -30,7 +30,7 @@ div.messages { font-style:italic; text-align:center; font-size:16px; margin-top:
 
 div.images { display:block; float:left;  margin:10px 30px 10px 30px; }
 
-img.photo { display:block; margin-left:auto; margin-right:auto; }
+div.clear { clear:both; }
 
 ul.errorlist { list-style-type:none; font-style:italic; }
 
@@ -47,7 +47,6 @@ input[type=submit] { font-weight:600; margin-top:10px; }
 
 .editing-gray, .editing-gray:hover { color:#C4CCC8 }
 
-
 /*WIGGLE*/
 /*Source: http://www.cssreset.com/css3-webkit-animation-shake-links/*/
 @-webkit-keyframes spaceboots {
@@ -63,22 +62,21 @@ input[type=submit] { font-weight:600; margin-top:10px; }
     90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
     100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); } }
 
-.DELETE {
+.DELETE, #DELETE {
     -webkit-animation-name: spaceboots;
     -webkit-animation-duration: 0.8s;
     -webkit-transform-origin:50% 50%;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear; }
 
-.DELETE { display:inline-block }
+.DELETE:hover, #DELETE:hover { -webkit-filter: grayscale(100%);}
 
-.DELETE:hover { -webkit-filter: grayscale(100%);}
-
+img.photo { display:block; margin-left:auto; margin-right:auto; }
 
 a.delete-button {
-    clear:left;
+    clear:both;
     font-weight:600;
-    margin:94px auto;
+    margin:40px auto 94px;
     top-margin:1000px;
     border:1px solid #dcdcdc;
     display:block;
