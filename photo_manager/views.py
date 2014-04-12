@@ -80,7 +80,7 @@ def create_album_view(request):
 @permission_required('photo_manager.change_photo', login_url='login')
 @permission_required('photo_manager.delete_photo', login_url='login')
 def edit_album_view(request, a):
-    ''' Allows users to delete photos '''
+    ''' Allows users to edit albums '''
     try:
         album = Album.objects.get(pk=a)
     except Album.DoesNotExist:
@@ -108,6 +108,7 @@ def edit_album_view(request, a):
 @permission_required('photo_manager.change_photo', login_url='login')
 @permission_required('photo_manager.delete_photo', login_url='login')
 def edit_photo_view(request, a, p):
+    ''' Allows users to edit individual photos '''
     try:
         album = Album.objects.get(pk=a)
         photo = Photo.objects.get(pk=p)
