@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+
+{% block toolbar %}
+
+    <p class='toolbar'>
+        <a href="{% url 'create' %}">Create</a> |
+        <a href="{% url 'logout' %}">Sign Out</a>
+    </p>
+
+{% endblock %}
+
+
+{% block body %}
+
+{% load thumbnail %}
+
+    {% for album, image in albums.iteritems %}
+        <div class='images'>
+            <h2>{{ album.title }}</h2>
+            <a href="{% url 'album' album.pk %}">
+                {% thumbnail image.image "x200" as im %}
+                    <img src="{{ im.url }}">
+                {% endthumbnail %}
+            </a>
+        </div>
+    {% endfor %}
+    
+    {% for album in empty %}
+        <div class='images'>
+            <h2>{{ album.title }}</h2>
+            <a href="{% url 'album' album.pk %}">
+                <img src='{{ STATIC_URL }}empty.png' width='auto' height='200'>
+            </a>
+        </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+
+{% block toolbar %}
+
+    {% if request.user == album.creator %}
+        <p class='toolbar'>
+            <a href="{% url 'album' album.pk %}"><b>Album:</b> <i>{{ album.title }}</i></a> |
+            <a href="{% url 'edit_photo' album.pk photo.pk %}">Edit Photo</a> |
+            <a href="{% url 'create' %}">Create</a> |
+            <a href="{% url 'logout' %}">Sign Out</a>
+        </p>
+    {% elif request.user.is_authenticated and album.public_album %}
+        <p class='toolbar'>
+            <a href="{% url 'album' album.pk %}"><b>Album:</b> <i>{{ album.title }}</i></a> |
+            <a href="{% url 'create' %}">Create</a> |
+            <a href="{% url 'logout' %}">Sign Out</a>
+        </p>
+    {% elif request.user.is_authenticated %}
+        <p class='toolbar'>
+            <a href="{% url 'create' %}">Create</a> |
+            <a href="{% url 'logout' %}">Sign Out</a>
+        </p>
+    {% else %}
+        <p class='toolbar'>
+            <a href="{% url 'auth_login' %}">Sign In</a> |
+            <a href="{% url 'registration_register' %}">Join</a>
+        </p>
+    {% endif %}
+
+{% endblock %}
+
+
+{% block body %}
+
+{% load thumbnail %}
+    
+    {% if request.user != album.creator %}
+        <h3 class='owner'>by {{ album.creator }}</h3>
+    {% endif %}
+
+    <h2 class='photo-caption'>{{ photo.caption }}</h2>
+    {% thumbnail photo.image "x600" as im %}
+        <img class='photo' src="{{ im.url }}">
+    {% endthumbnail %}
+
+{% endblock %}

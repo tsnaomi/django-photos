@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+
+{% block toolbar %}
+
+    <p class='toolbar'>
+        <a href="{% url 'album' album.pk %}"><b>Back to Album</b></a> |
+        <a href="{% url 'create' %}">Create</a> |
+        <a href="{% url 'logout' %}">Sign Out</a>
+    </p>
+
+{% endblock %}
+
+
+{% block body %}
+    
+{% load inplace_edit thumbnail %}
+{% inplace_static %}
+
+    {% if form.subject.errors %}
+        {% for error in form.subject.errors %}
+            <div class='messages'>{{ error }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <h2 class='edit-album-title' title='click to edit'>{% inplace_edit "album.title" %}</h2>
+
+    <h3 class='description'>Description:</h3><p class='description' title='click to edit'>{% inplace_edit 'album.description' edit_empty_value='Add a description.' %}</p>
+
+    <h3 class='privacy'>Public Album:&nbsp{% inplace_edit 'album.public_album' %}</h3>
+
+    <form action="{% url 'edit_album' album.pk %}" method='post' enctype="multipart/form-data">
+        {{ PhotoForm }}
+    <input type='submit' value='Upload Photo' />{% csrf_token %}</form>
+
+    {% for photo in album.photo_set.all %}
+        <div class='images'>
+            <h3 title='click to edit'>{% inplace_edit "photo.caption" edit_empty_value='Add a caption.' %}</h3>
+            <a href="{% url 'delete_photo' album.pk photo.pk %}" onclick="return confirm('Are you positive you want to delete this photo?');">
+                {% thumbnail photo.image "x200" as im %}
+                    <img class="DELETE" src="{{ im.url }}">
+                {% endthumbnail %}
+            </a>
+        </div>
+    {% endfor %}
+
+    <br><a href="{% url 'delete_album' album.pk %}" onclick="return confirm('Are you positive you want to delete this album?');" class="delete-button">Delete Album</a>
+
+    <p class='toolbar'><a href="{% url 'album' album.pk %}"><b>Back to Album<b></a></p>
+
+{% endblock %}

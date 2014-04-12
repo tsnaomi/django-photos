@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g$mmd6-#=3d!-sps#a4re)^*a08(iqro(zzwgy5k=^msbo@q6$'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,10 +36,13 @@ DEFAULT_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration',
 )
 
 THIRD_PARTY_APPS = (
     'south',
+    'inplaceeditform',
+    'sorl.thumbnail',
 )
 
 LOCAL_APPS = (  # project apps
@@ -72,8 +75,30 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
+)
+
+INPLACEEDIT_EVENT = "click"
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
+
+ACCOUNT_ACTIVATION_DAYS = 4
 
 LANGUAGE_CODE = 'en-us'
 
@@ -85,11 +110,20 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
+
+THUMBNAIL_DEBUG = True
 
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'linguisticpythonista@gmail.com'
+EMAIL_HOST_USER = 'linguisticpythonista@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

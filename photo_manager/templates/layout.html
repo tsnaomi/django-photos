@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<title>Photette</title>
+<link rel=stylesheet type=text/css href='{{ STATIC_URL }}style.css'>
+<div class=page> 
+<h1><a href='{% url 'home' %}'>Photette</a></h1>
+<div class=metanav></div>
+
+
+{% block toolbar %}{% endblock %}
+
+
+{% if messages %}
+    {% for message in messages %}
+        <div class='messages'>{{ message }}</div><br>
+    {% endfor %}
+{% endif %}
+
+
+{% block body %}{% endblock %}
+
+
+</div>

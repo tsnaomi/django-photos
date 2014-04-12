@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <h2 class='title'>Create Album</h2>
+
+    <form action="{% url 'create' %}" method='post'>
+        {{ album_form.as_p }}
+    <input type='submit' value='Create Album' />{% csrf_token %}</form>
+
+{% endblock %}
