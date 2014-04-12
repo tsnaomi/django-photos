@@ -31,5 +31,5 @@ class Photo(models.Model):
 
 @receiver(user_activated)
 def activation_receiver(sender, **kwargs):
-    group = Group.objects.get(name="Activated")
+    group = Group.objects.get(name='Activated')
     group.user_set.add(kwargs['user'])
