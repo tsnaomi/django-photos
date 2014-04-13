@@ -15,10 +15,10 @@
             <a href="{% url 'logout' %}">Sign Out</a>
         </p>
     {% else %}
-            <p class='toolbar'>
+        <p class='toolbar'>
             <a href="{% url 'auth_login' %}">Sign In</a> |
             <a href="{% url 'registration_register' %}">Join</a>
-            </p>
+        </p>
     {% endif %}
 
 {% endblock %}
