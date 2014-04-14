@@ -1,4 +1,4 @@
 Darling, please proceed here to confirm your Photette account:
 http://{{ site.domain }}/activate/{{ activation_key }}
 
-There are {{ expiration_days }} day{% if expiration_days > 1 %}s{% endif %} remaining before this link self-destructs.
+There are {{ expiration_days }} days remaining before this link self-destructs.

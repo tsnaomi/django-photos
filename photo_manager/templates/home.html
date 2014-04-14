@@ -15,6 +15,14 @@
 
 {% load thumbnail %}
 
+    {% if album or empty %}    
+        {% if messages %}
+            <h2 class='edit-album-title'>Your Albums</h2>
+        {% else %}
+            <h2 class='album-title'>Your Albums</h2>
+        {% endif %}
+    {% endif %}
+
     {% for album, image in albums.iteritems %}
         <div class='images'>
             <h2>{{ album.title }}</h2>

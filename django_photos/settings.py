@@ -22,10 +22,11 @@ SECRET_KEY = 'secretkey'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+THUMBNAIL_DEBUG = True
+
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -45,7 +46,8 @@ THIRD_PARTY_APPS = (
     'sorl.thumbnail',
 )
 
-LOCAL_APPS = (  # project apps
+# project apps
+LOCAL_APPS = (
     'photo_manager',
 )
 
@@ -113,13 +115,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-THUMBNAIL_DEBUG = True
-
+# STATIC_ROOT = './static/'  # production
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# Email Setings
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
